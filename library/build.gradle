@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.nbsp'
+group = 'com.lobynya'
 version = '1.9.1'
 
 // Use ./gradlew bintrayUpload to upload
@@ -71,7 +71,7 @@ android {
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 13
         versionName "1.3"
     }

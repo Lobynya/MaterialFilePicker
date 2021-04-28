@@ -2,7 +2,6 @@ package com.nbsp.materialfilepicker.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -42,7 +41,7 @@ public class FilePickerActivity extends AppCompatActivity implements DirectoryFr
 
     private Toolbar mToolbar;
 
-    private File mStart = Environment.getExternalStorageDirectory();
+    private File mStart = null;
     private File mCurrent = mStart;
 
     private CharSequence mTitle;
@@ -54,6 +53,8 @@ public class FilePickerActivity extends AppCompatActivity implements DirectoryFr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mStart = getApplicationContext().getExternalFilesDir(null);
+        mCurrent = mStart;
         setContentView(R.layout.activity_file_picker);
 
         initArguments(savedInstanceState);
@@ -235,7 +236,7 @@ public class FilePickerActivity extends AppCompatActivity implements DirectoryFr
             // If the user wanna go to the emulated directory, he will be taken to the
             // corresponding user emulated folder.
             if (mCurrent.getAbsolutePath().equals("/storage/emulated")) {
-                mCurrent = Environment.getExternalStorageDirectory();
+                mCurrent = getApplicationContext().getExternalFilesDir(null);
             }
             addFragmentToBackStack(mCurrent);
             updateTitle();
